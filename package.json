@@ -1,0 +1,18 @@
+{
+  "name": "accessible-data-explorer",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "author": "Ahmed Rahim",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "jsdom": "^26.1.0"
+  }
+}

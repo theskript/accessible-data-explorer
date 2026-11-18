@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="An accessible data explorer: a sortable, filterable table and a chart with a text alternative, on invented weather-station readings.">
+  <title>Weather station explorer - accessible data explorer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="src/app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header">
+    <h1>Weather station explorer</h1>
+    <p>Sort and filter a table of weather-station readings, and read the same data as a chart. Every reading on this page is invented.</p>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <noscript><p>This page needs JavaScript to show the readings.</p></noscript>
+
+    <form id="filters" class="filters" aria-labelledby="filters-heading" novalidate>
+      <h2 id="filters-heading">Filters</h2>
+      <div class="filter-fields">
+        <div class="field">
+          <label for="region">Region</label>
+          <select id="region" name="region">
+            <option value="">All regions</option>
+            <option value="R1">R1</option>
+            <option value="R2">R2</option>
+            <option value="R3">R3</option>
+            <option value="R4">R4</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="min-temp">Minimum temperature (°C)</label>
+          <input id="min-temp" name="min-temp" type="number" step="0.5" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="text">Station name contains</label>
+          <input id="text" name="text" type="search" autocomplete="off" aria-describedby="filters-hint">
+        </div>
+        <div class="field field-action">
+          <button type="button" id="clear" class="button">Clear filters</button>
+        </div>
+      </div>
+      <p id="filters-hint" class="hint">The table, summary and chart update as you change a filter. The results count is announced after a short pause.</p>
+    </form>
+
+    <section class="panel" aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Summary of the rows shown</h2>
+      <dl id="summary" class="summary"></dl>
+    </section>
+
+    <section class="panel" aria-labelledby="readings-heading">
+      <h2 id="readings-heading">Readings</h2>
+      <p id="status" class="status" role="status" aria-live="polite" aria-atomic="true"></p>
+      <p id="table-hint" class="hint">Use the column buttons to sort. In the table body, use the arrow keys, Home, End, Page Up and Page Down to move between cells.</p>
+      <div id="table-container" class="table-wrap"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="chart-heading">
+      <h2 id="chart-heading">Chart</h2>
+      <div id="chart-container"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Readings are generated from a fixed seed and describe no real place. MIT licence.</p>
+  </footer>
+</body>
+</html>

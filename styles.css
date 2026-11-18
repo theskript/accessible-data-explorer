@@ -1,0 +1,392 @@
+:root {
+  color-scheme: light dark;
+  --bg: #ffffff;
+  --surface: #f3f5f7;
+  --text: #1a1f24;
+  --text-muted: #4b5563;
+  --accent: #0b4f9c;
+  --on-accent: #ffffff;
+  --focus: #0a3f8f;
+  --border: #6b7280;
+  --chart-1: #0b4f9c;
+  --chart-2: #b34700;
+  --chart-3: #1b7a3a;
+  --chart-4: #8a1c7c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1419;
+    --surface: #1a2129;
+    --text: #e8edf2;
+    --text-muted: #aab4bf;
+    --accent: #7db4ff;
+    --on-accent: #0f1419;
+    --focus: #ffd166;
+    --border: #8a96a3;
+    --chart-1: #7db4ff;
+    --chart-2: #ffa366;
+    --chart-3: #6fd18a;
+    --chart-4: #e59cf0;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.site-header,
+main,
+.site-footer {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+h1 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+.hint {
+  color: var(--text-muted);
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  z-index: 10;
+  padding: 0.75rem 1rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  transform: translateY(-150%);
+  transition: transform 0.15s ease-out;
+}
+
+.skip-link:focus {
+  transform: translateY(0.5rem);
+}
+
+:focus-visible {
+  outline: 0.1875rem solid var(--focus);
+  outline-offset: 0.125rem;
+}
+
+.data-table [data-row]:focus-visible {
+  outline-offset: -0.1875rem;
+}
+
+.panel,
+.filters {
+  margin-block: 1.5rem;
+}
+
+.filter-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 12rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+input,
+select {
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 0.125rem solid var(--border);
+  border-radius: 0.25rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.button {
+  min-height: 2.75rem;
+  padding: 0.5rem 1rem;
+  border: 0.125rem solid var(--accent);
+  border-radius: 0.25rem;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.status {
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-left: 0.375rem solid var(--accent);
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+}
+
+.summary div {
+  padding: 0.75rem;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.25rem;
+  background: var(--surface);
+}
+
+.summary dt {
+  color: var(--text-muted);
+}
+
+.summary dd {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 0.125rem solid var(--border);
+  border-radius: 0.25rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table caption {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 0.0625rem solid var(--border);
+  text-align: left;
+}
+
+.data-table thead th {
+  padding: 0;
+  background: var(--surface);
+  border-top: 0.0625rem solid var(--border);
+}
+
+.data-table tbody th {
+  font-weight: 600;
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+.data-table .num {
+  text-align: right;
+}
+
+.data-table .empty {
+  text-align: left;
+  font-weight: 600;
+}
+
+.sort-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 0;
+  background: transparent;
+  color: var(--text);
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.15s ease-out;
+}
+
+.sort-button:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+.data-table th.num .sort-button {
+  justify-content: flex-end;
+}
+
+.data-table th[aria-sort] .sort-button {
+  font-weight: 700;
+}
+
+.sort-icon {
+  font-size: 0.75rem;
+}
+
+.chart {
+  margin: 0;
+}
+
+.chart-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0.0625rem solid var(--border);
+  border-radius: 0.25rem;
+  background: var(--surface);
+}
+
+.axis-line {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.axis-text {
+  fill: var(--text);
+  font-size: 0.75rem;
+}
+
+.axis-title {
+  fill: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.mark {
+  stroke: var(--surface);
+  stroke-width: 1;
+}
+
+.mark-1 { fill: var(--chart-1); }
+.mark-2 { fill: var(--chart-2); }
+.mark-3 { fill: var(--chart-3); }
+.mark-4 { fill: var(--chart-4); }
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0.75rem 0 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+figcaption {
+  color: var(--text-muted);
+}
+
+.site-footer {
+  margin-top: 2rem;
+  padding-block: 1rem 2rem;
+  color: var(--text-muted);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 0.0625rem;
+  height: 0.0625rem;
+  margin: -0.0625rem;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (forced-colors: active) {
+  :focus-visible {
+    outline: 0.1875rem solid Highlight;
+  }
+
+  .button,
+  .skip-link {
+    border: 0.125rem solid ButtonText;
+  }
+
+  .mark {
+    fill: CanvasText;
+    stroke: Canvas;
+  }
+
+  .axis-line {
+    stroke: CanvasText;
+  }
+
+  .axis-text,
+  .axis-title {
+    fill: CanvasText;
+  }
+}
